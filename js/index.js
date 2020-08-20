@@ -303,14 +303,16 @@ function onMouseDown(e) {
             if (NpcRole[m_pickRole].dialog.type.length > 0) { m_curDialog = 0; DialogCmd(); }
             return;
         }
-
+		
         Player.destx = VirualScreen.srcx + g_mx;
         Player.desty = VirualScreen.srcy + g_my;
-
+		console.log(Player.destx/48)
+		console.log(Player.desty/48)
         if (Player.destx < 0) Player.destx = 0;
         if (Player.desty < 0) Player.desty = 0;
         if (Player.destx > imgMap.width - 48) Player.destx = imgMap.width - 48;
         if (Player.desty > imgMap.height - 48) Player.desty = imgMap.height - 48;
+		
     }
 }
 
@@ -345,8 +347,13 @@ function game_Render() {
 
         case SCREEN_GAME:
             MapScroll();
-            for (var i = 0; i < NpcRole.length; i++) { RoleMove(NpcRole[i]); RoleFrame(NpcRole[i]); DrawNpc(NpcRole[i]); }
-            RoleFrame(Player); DrawPlayer(Player);
+            for (var i = 0; i < NpcRole.length; i++) { 
+				RoleMove(NpcRole[i]); 
+				RoleFrame(NpcRole[i]); 
+				DrawNpc(NpcRole[i]); 
+			}
+            RoleFrame(Player); 
+			DrawPlayer(Player);
             break;
     }
 }
