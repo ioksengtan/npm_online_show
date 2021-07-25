@@ -86,7 +86,7 @@ function LoadMap(mapid) {
 }
 
 function LoadNPC(mapid) {
-    const appNPC = "https://script.google.com/macros/s/AKfycbzLOZy5MDDT1mOx51HVFocQUaeLJJCqtT5fjj07bCPrGj2vFRIR/exec";
+    const appNPC = "https://script.google.com/macros/s/AKfycbx16qqVo4DNka4UMF5Og-QwqKeC903xZzhDRdPaKtTWdwtrO5VA/exec";
 
     var npc_sets = [];
     NpcRole = [];
@@ -94,9 +94,15 @@ function LoadNPC(mapid) {
 
     $.get(appNPC, {
         "map_id": mapid,
-        "command": "GetNPCsFromMapID"
+        "command": "GetNPCsFromMapID",
+        "url": "https://docs.google.com/spreadsheets/d/1mt9SXpQDVkcQB1UEB_ns4NHyuSQ_3VQrZHeyDFVB0uo/edit#gid=1320229151",
+        "name": "NPC",     
     }, function (data) {
-        npc_sets = parse_data(data);    //console.log(npc_sets.length);
+	console.log(data);
+	var tmp = JSON.parse(data);
+	console.log(tmp);
+	npc_sets = parse_data(tmp.table);
+        //npc_sets = parse_data(data);    //console.log(npc_sets.length);
 
         for (var i = 0; i < npc_sets.length; i++) {
 
